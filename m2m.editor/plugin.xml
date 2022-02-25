@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated m2m -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="m2m.presentation.M2mModelWizardID"
+            name="%_UI_M2mModelWizard_label"
+            class="m2m.presentation.M2mModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/M2mModelFile.gif">
+         <description>%_UI_M2mModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated m2m -->
+      <editor
+            id="m2m.presentation.M2mEditorID"
+            name="%_UI_M2mEditor_label"
+            icon="icons/full/obj16/M2mModelFile.gif"
+            extensions="m2m"
+            class="m2m.presentation.M2mEditor"
+            contributorClass="m2m.presentation.M2mActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

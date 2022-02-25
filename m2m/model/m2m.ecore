@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="m2m" nsURI="http://www.example.org/m2m" nsPrefix="m2m">
+  <eClassifiers xsi:type="ecore:EClass" name="MappingRule">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="input" eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="output" eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="action" eType="#//Action"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="assignment" eType="#//AssignmentOperator"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mappingCondition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="filter" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comment" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="MappingModel" eType="#//MappingModel"
+        eOpposite="#//MappingModel/Rules"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ChildRules" upperBound="-1"
+        eType="#//MappingRule" containment="true" eOpposite="#//MappingRule/ParentRule"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ParentRule" eType="#//MappingRule"
+        eOpposite="#//MappingRule/ChildRules"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Model">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="model" eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EPackage"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="AssignmentOperator">
+    <eLiterals name="assignment"/>
+    <eLiterals name="addition"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Action">
+    <eLiterals name="transform"/>
+    <eLiterals name="add"/>
+    <eLiterals name="remove"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MappingModel">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Rules" upperBound="-1"
+        eType="#//MappingRule" containment="true" eOpposite="#//MappingRule/MappingModel"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="LeftModels" lowerBound="1"
+        upperBound="-1" eType="#//Model" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="RightModels" lowerBound="1"
+        upperBound="-1" eType="#//Model" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="MainLeftMetamodel" lowerBound="1"
+        eType="#//Model"/>
+  </eClassifiers>
+</ecore:EPackage>
