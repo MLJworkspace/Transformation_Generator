@@ -1,0 +1,156 @@
+modeltype statemach uses 'http://www.eclipse.org/papyrusrt/xtumlrt/statemach';
+modeltype hclScope uses 'http://www.xtext.org/example/hclscope/HclScope';
+
+transformation Graphical2Textual( in statemachModel:statemach, out hclScopeModel:hclScope);
+main() {
+statemachModel.rootObjects()[statemach::StateMachine] -> map StateMachine2StateMachine();
+}
+mapping statemach :: StateMachine :: StateMachine2StateMachine() : hclScope :: StateMachine
+{
+     result.states := self.top.map CompositeState2State();
+    result.name := self.name;
+}
+mapping statemach :: CompositeState :: CompositeState2State() : hclScope :: State
+inherits statemach :: State :: State2State
+{
+     result.entrypoint := self.entryPoints -> map EntryPoint2EntryPoint();
+     result.exitpoint := self.exitPoints -> map ExitPoint2ExitPoint();
+     result.choice := self.choicePoints -> map ChoicePoint2Choice();
+     result.junction := self.junctionPoints -> map JunctionPoint2Junction();
+     result.states := self.substates -> map State2StateDisjunct();
+     result.transition := self.transitions -> map Transition2Transition();
+     result.initialtransition := self.transitions -> any(e | e.sourceVertex.oclIsTypeOf(InitialPoint)).map Transition2InitialTransition();
+     result.historytransition := self.transitions -> map Transition2HistoryTransition();
+     result.internaltransition := self.transitions -> map Transition2InternalTransition();
+}
+mapping statemach :: SimpleState :: SimpleState2State() : hclScope :: State
+inherits statemach :: State :: State2State
+{
+}
+mapping statemach :: EntryPoint :: EntryPoint2EntryPoint() : hclScope :: EntryPoint
+inherits statemach :: Pseudostate :: Pseudostate2Vertex
+{
+}
+mapping statemach :: ExitPoint :: ExitPoint2ExitPoint() : hclScope :: ExitPoint
+inherits statemach :: Pseudostate :: Pseudostate2Vertex
+{
+}
+mapping statemach :: ChoicePoint :: ChoicePoint2Choice() : hclScope :: Choice
+inherits statemach :: Pseudostate :: Pseudostate2Vertex
+{
+}
+mapping statemach :: JunctionPoint :: JunctionPoint2Junction() : hclScope :: Junction
+inherits statemach :: Pseudostate :: Pseudostate2Vertex
+{
+}
+
+mapping statemach :: Transition :: Transition2TransitionsDisjunct() : hclScope :: Transitions
+disjuncts statemach :: Transition :: Transition2Transition, statemach :: Transition :: Transition2HistoryTransition, statemach :: Transition :: Transition2InitialTransition{}
+
+mapping statemach :: Transition :: Transition2Transitions() : hclScope :: Transitions
+{
+    var TransitionBodyObject := object hclScope :: TransitionBody{
+        transitionguard := self.guard.map Guard2TransitionGuard();
+        transitionoperation := self.actionChain.map ActionChain2TransitionOperation();
+        portevent := self.triggers -> any(e | e.name.matches(".*\\..*")).map Trigger2PortEventTrigger();
+        methodparameter := self.triggers -> any(e | e.name.matches(".*\\(.*")).map Trigger2MethodParameterTrigger();
+        trigger := self.triggers -> map Trigger2Trigger();
+    };
+    transitionbody := TransitionBodyObject;
+    result.name := self.name;
+}
+mapping statemach :: Transition :: Transition2Transition() : hclScope :: Transition
+inherits statemach :: Transition :: Transition2Transitions
+when {not(self.sourceVertex.oclIsTypeOf(InitialPoint) or self.targetVertex.oclIsTypeOf(DeepHistory) or self.sourceVertex = null or self.targetVertex = null)}
+{
+     result._from := self.sourceVertex.map Vertex2VertexDisjunct();
+     result.to := self.targetVertex.map Vertex2VertexDisjunct();
+}
+mapping statemach :: Transition :: Transition2HistoryTransition() : hclScope :: HistoryTransition
+inherits statemach :: Transition :: Transition2Transitions
+when {self.targetVertex.oclIsTypeOf(DeepHistory)}
+{
+     result._from := self.sourceVertex.map Vertex2VertexDisjunct();
+     result.to := self.targetVertex.map Vertex2DeepHistory();
+}
+mapping statemach :: Transition :: Transition2InitialTransition() : hclScope :: InitialTransition
+inherits statemach :: Transition :: Transition2Transitions
+when {self.sourceVertex.oclIsTypeOf(InitialPoint)}
+{
+     result.initialstate := self.sourceVertex.map Vertex2InitialState();
+     result.initialto := self.targetVertex.map Vertex2VertexDisjunct();
+}
+mapping statemach :: Transition :: Transition2InternalTransition() : hclScope :: InternalTransition
+when {self.sourceVertex = null and self.targetVertex = null}
+{
+    result.name := self.name;
+}
+mapping statemach :: Guard :: Guard2TransitionGuard() : hclScope :: TransitionGuard
+{
+    result.name := self.name;
+}
+mapping statemach :: ActionChain :: ActionChain2TransitionOperation() : hclScope :: TransitionOperation
+{
+    result.name := self.name;
+}
+mapping statemach :: Trigger :: Trigger2Trigger() : hclScope :: Trigger
+when {not(self.name.matches(".*\\(.*") or self.name.matches(".*\\..*"))}
+{
+    result.name := self.name;
+}
+mapping statemach :: Trigger :: Trigger2PortEventTrigger() : hclScope :: PortEventTrigger
+when {self.name.matches(".*\\..*")}
+{
+    var PortObject := object hclScope :: Port{
+        name := self.name.substringBefore(".");
+    };
+    port := PortObject;
+    var EventObject := object hclScope :: Event{
+        name := self.name.substringAfter(".");
+    };
+    event := EventObject;
+}
+mapping statemach :: Trigger :: Trigger2MethodParameterTrigger() : hclScope :: MethodParameterTrigger
+when {self.name.matches(".*\\(.*")}
+{
+    var MethodObject := object hclScope :: Method{
+        name := self.name.substringBefore("(");
+    };
+    method := MethodObject;
+    var ParameterObject := object hclScope :: Parameter{
+        name := self.name.substring(self.name.indexOf("(") + 1, self.name.indexOf(")") -1);
+    };
+    parameter := ParameterObject;
+}
+
+mapping statemach :: State :: State2StateDisjunct() : hclScope :: State
+disjuncts statemach :: CompositeState :: CompositeState2State, statemach :: SimpleState :: SimpleState2State{}
+
+mapping statemach :: State :: State2State() : hclScope :: State
+inherits statemach :: Vertex :: Vertex2Vertex
+{
+}
+
+mapping statemach :: Vertex :: Vertex2VertexDisjunct() : hclScope :: Vertex
+disjuncts statemach :: EntryPoint :: EntryPoint2EntryPoint, statemach :: CompositeState :: CompositeState2State, statemach :: SimpleState :: SimpleState2State, statemach :: JunctionPoint :: JunctionPoint2Junction, statemach :: ExitPoint :: ExitPoint2ExitPoint, statemach :: State :: State2State, statemach :: ChoicePoint :: ChoicePoint2Choice, statemach :: Pseudostate :: Pseudostate2Vertex{}
+
+mapping statemach :: Vertex :: Vertex2Vertex() : hclScope :: Vertex
+{
+    result.name := self.name;
+}
+mapping statemach :: Vertex :: Vertex2InitialState() : hclScope :: InitialState
+{
+    result.name := self.name;
+}
+mapping statemach :: Vertex :: Vertex2DeepHistory() : hclScope :: DeepHistory
+{
+    result.name := self.name;
+}
+
+mapping statemach :: Pseudostate :: Pseudostate2VertexDisjunct() : hclScope :: Vertex
+disjuncts statemach :: EntryPoint :: EntryPoint2EntryPoint, statemach :: JunctionPoint :: JunctionPoint2Junction, statemach :: ExitPoint :: ExitPoint2ExitPoint, statemach :: ChoicePoint :: ChoicePoint2Choice{}
+
+mapping statemach :: Pseudostate :: Pseudostate2Vertex() : hclScope :: Vertex
+inherits statemach :: Vertex :: Vertex2Vertex
+{
+}

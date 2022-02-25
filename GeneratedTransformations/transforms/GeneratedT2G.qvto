@@ -1,0 +1,153 @@
+modeltype statemach uses 'http://www.eclipse.org/papyrusrt/xtumlrt/statemach';
+modeltype hclScope uses 'http://www.xtext.org/example/hclscope/HclScope';
+
+transformation Textual2Graphical ( in hclScopeModel:hclScope, out statemachModel:statemach);
+main() {
+hclScopeModel.rootObjects()[hclScope::StateMachine] -> map StateMachine2StateMachineDisjunct();
+}
+
+mapping hclScope :: StateMachine :: StateMachine2StateMachineDisjunct() : statemach :: StateMachine
+disjuncts hclScope :: StateMachine :: StateMachine2StateMachine0, hclScope :: StateMachine :: StateMachine2StateMachine1{}
+
+mapping hclScope :: StateMachine :: StateMachine2StateMachine0() : statemach :: StateMachine
+when {self.states -> size() = 1}
+{
+     result.top := self.states -> first().map State2CompositeState();
+    result.name := self.name;
+}
+
+mapping hclScope :: StateMachine :: StateMachine2StateMachine1() : statemach :: StateMachine
+{
+    var CompositeStateObject := object statemach :: CompositeState{
+        substates := self.states -> map State2StateDisjunct();
+        junctionPoints := self.junction -> map Junction2JunctionPoint();
+        choicePoints := self.choice -> map Choice2ChoicePoint();
+        transitions := self.transition -> map Transition2Transition();
+        transitions := self.initialtransition.map InitialTransition2Transition();
+    };
+    top := CompositeStateObject;
+    result.name := self.name;
+}
+mapping hclScope :: State :: State2CompositeState() : statemach :: CompositeState
+inherits hclScope :: State :: AbstractState2State
+{
+     result.substates := self.states -> map State2StateDisjunct();
+     result.junctionPoints := self.junction -> map Junction2JunctionPoint();
+     result.choicePoints := self.choice -> map Choice2ChoicePoint();
+     result.entryPoints := self.entrypoint -> map EntryPoint2EntryPoint();
+     result.exitPoints := self.exitpoint -> map ExitPoint2ExitPoint();
+     result.transitions += self.internaltransition -> map InternalTransition2Transition();
+     result.transitions += self.transition -> map Transition2Transition();
+     result.transitions += self.historytransition -> map HistoryTransition2Transition();
+     result.transitions += self.initialtransition.map InitialTransition2Transition();
+     result.initial := self.initialtransition.initialstate.map InitialState2InitialPoint();
+     result.deepHistory := self.historytransition.to -> first().map DeepHistory2DeepHistory();
+}
+mapping hclScope :: State :: State2SimpleState() : statemach :: SimpleState
+inherits hclScope :: State :: AbstractState2State
+when {self.states -> isEmpty() and self.entrypoint -> isEmpty() and self.exitpoint -> isEmpty()  and self.junction -> isEmpty()  and self.choice -> isEmpty()}
+{
+}
+
+mapping hclScope :: State :: State2StateDisjunct() : statemach :: State
+disjuncts hclScope :: State :: State2CompositeState, hclScope :: State :: State2SimpleState{}
+
+abstract mapping hclScope :: State :: AbstractState2State() : statemach :: State
+inherits hclScope :: Vertex :: AbstractVertex2Vertex
+{
+}
+mapping hclScope :: Junction :: Junction2JunctionPoint() : statemach :: JunctionPoint
+{
+    result.name := self.name;
+}
+mapping hclScope :: Choice :: Choice2ChoicePoint() : statemach :: ChoicePoint
+{
+    result.name := self.name;
+}
+mapping hclScope :: EntryPoint :: EntryPoint2EntryPoint() : statemach :: EntryPoint
+{
+    result.name := self.name;
+}
+mapping hclScope :: ExitPoint :: ExitPoint2ExitPoint() : statemach :: ExitPoint
+{
+    result.name := self.name;
+}
+mapping hclScope :: DeepHistory :: DeepHistory2DeepHistory() : statemach :: DeepHistory
+{
+    result.name := self.name;
+}
+mapping hclScope :: InitialState :: InitialState2InitialPoint() : statemach :: InitialPoint
+inherits hclScope :: InitialState :: AbstractInitialState2Pseudostate
+{
+    result.name := self.name;
+}
+
+mapping hclScope :: Transitions :: Transitions2TransitionDisjunct() : statemach :: Transition
+disjuncts hclScope :: HistoryTransition :: HistoryTransition2Transition, hclScope :: Transition :: Transition2Transition, hclScope :: InitialTransition :: InitialTransition2Transition{}
+
+mapping hclScope :: Transitions :: Transitions2Transition() : statemach :: Transition
+{
+     result.guard := self.transitionbody.transitionguard.map TransitionGuard2Guard();
+     result.triggers += self.transitionbody.methodparameter -> map MethodParameterTrigger2Trigger();
+     result.triggers += self.transitionbody.portevent -> map PortEventTrigger2Trigger();
+     result.triggers += self.transitionbody.trigger -> map Trigger2Trigger();
+     result.actionChain := self.transitionbody.transitionoperation.map TransitionOperation2ActionChain();
+    result.name := self.name;
+}
+mapping hclScope :: InitialTransition :: InitialTransition2Transition() : statemach :: Transition
+inherits hclScope :: Transitions :: Transitions2Transition
+{
+     result.sourceVertex := self.initialstate.map InitialState2InitialPoint();
+     result.targetVertex := self.initialto.map Vertex2VertexDisjunct();
+}
+mapping hclScope :: HistoryTransition :: HistoryTransition2Transition() : statemach :: Transition
+inherits hclScope :: Transitions :: Transitions2Transition
+{
+     result.sourceVertex := self._from.map Vertex2VertexDisjunct();
+     result.targetVertex := self.to.map DeepHistory2DeepHistory();
+}
+mapping hclScope :: Transition :: Transition2Transition() : statemach :: Transition
+inherits hclScope :: Transitions :: Transitions2Transition
+{
+     result.sourceVertex := self._from.map Vertex2VertexDisjunct();
+     result.targetVertex := self.to.map Vertex2VertexDisjunct();
+}
+mapping hclScope :: InternalTransition :: InternalTransition2Transition() : statemach :: Transition
+{
+}
+
+mapping hclScope :: Vertex :: Vertex2VertexDisjunct() : statemach :: Vertex
+disjuncts hclScope :: State :: State2CompositeState, hclScope :: EntryPoint :: EntryPoint2EntryPoint, hclScope :: State :: State2SimpleState, hclScope :: Choice :: Choice2ChoicePoint, hclScope :: Junction :: Junction2JunctionPoint, hclScope :: ExitPoint :: ExitPoint2ExitPoint{}
+
+abstract mapping hclScope :: Vertex :: AbstractVertex2Vertex() : statemach :: Vertex
+{
+    result.name := self.name;
+}
+abstract mapping hclScope :: InitialState :: AbstractInitialState2Vertex() : statemach :: Vertex
+{
+}
+mapping hclScope :: TransitionGuard :: TransitionGuard2Guard() : statemach :: Guard
+{
+    result.name := self.name;
+}
+mapping hclScope :: Trigger :: Trigger2Trigger() : statemach :: Trigger
+{
+    result.name := self.name;
+}
+mapping hclScope :: PortEventTrigger :: PortEventTrigger2Trigger() : statemach :: Trigger
+{
+}
+mapping hclScope :: MethodParameterTrigger :: MethodParameterTrigger2Trigger() : statemach :: Trigger
+{
+}
+mapping hclScope :: TransitionOperation :: TransitionOperation2ActionChain() : statemach :: ActionChain
+{
+    result.name := self.name;
+}
+abstract mapping hclScope :: InitialState :: AbstractInitialState2Pseudostate() : statemach :: Pseudostate
+inherits hclScope :: InitialState :: AbstractInitialState2Vertex
+{
+}
+abstract mapping hclScope :: DeepHistory :: AbstractDeepHistory2Vertex() : statemach :: Vertex
+{
+}

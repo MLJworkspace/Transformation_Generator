@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<m2m:MappingModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:m2m="http://www.example.org/m2m" name="Textual2Graphical ">
+  <Rules filter="self.states -> size() = 1">
+    <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//StateMachine"/>
+    <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.statemach.model/model/statemach.ecore#//StateMachine"/>
+    <ChildRules mappingCondition="" filter="first()">
+      <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//StateMachine/states"/>
+      <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.statemach.model/model/statemach.ecore#//StateMachine/top"/>
+    </ChildRules>
+    <ChildRules>
+      <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//StateMachine/name"/>
+      <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.common.model/model/common.ecore#//NamedElement/name"/>
+    </ChildRules>
+  </Rules>
+  <Rules>
+    <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//StateMachine"/>
+    <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.statemach.model/model/statemach.ecore#//StateMachine"/>
+    <ChildRules action="add">
+      <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.statemach.model/model/statemach.ecore#//StateMachine/top"/>
+      <ChildRules>
+        <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//StateMachine/states"/>
+        <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.statemach.model/model/statemach.ecore#//CompositeState/substates"/>
+      </ChildRules>
+      <ChildRules>
+        <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//StateMachine/junction"/>
+        <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.statemach.model/model/statemach.ecore#//CompositeState/junctionPoints"/>
+      </ChildRules>
+      <ChildRules>
+        <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//StateMachine/choice"/>
+        <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.statemach.model/model/statemach.ecore#//CompositeState/choicePoints"/>
+      </ChildRules>
+      <ChildRules>
+        <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//StateMachine/transition"/>
+        <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.statemach.model/model/statemach.ecore#//CompositeState/transitions"/>
+      </ChildRules>
+      <ChildRules>
+        <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//StateMachine/initialtransition"/>
+        <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.statemach.model/model/statemach.ecore#//CompositeState/transitions"/>
+      </ChildRules>
+    </ChildRules>
+    <ChildRules>
+      <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//StateMachine/name"/>
+      <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.common.model/model/common.ecore#//NamedElement/name"/>
+    </ChildRules>
+  </Rules>
+  <Rules>
+    <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//State"/>
+    <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.statemach.model/model/statemach.ecore#//CompositeState"/>
+    <ChildRules>
+      <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//State/states"/>
+      <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.statemach.model/model/statemach.ecore#//CompositeState/substates"/>
+    </ChildRules>
+    <ChildRules>
+      <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//State/junction"/>
+      <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.statemach.model/model/statemach.ecore#//CompositeState/junctionPoints"/>
+    </ChildRules>
+    <ChildRules>
+      <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//State/choice"/>
+      <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.statemach.model/model/statemach.ecore#//CompositeState/choicePoints"/>
+    </ChildRules>
+    <ChildRules>
+      <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//State/entrypoint"/>
+      <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.statemach.model/model/statemach.ecore#//State/entryPoints"/>
+    </ChildRules>
+    <ChildRules>
+      <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//State/exitpoint"/>
+      <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.statemach.model/model/statemach.ecore#//State/exitPoints"/>
+    </ChildRules>
+    <ChildRules assignment="addition">
+      <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//State/internaltransition"/>
+      <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.statemach.model/model/statemach.ecore#//CompositeState/transitions"/>
+    </ChildRules>
+    <ChildRules assignment="addition">
+      <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//State/transition"/>
+      <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.statemach.model/model/statemach.ecore#//CompositeState/transitions"/>
+    </ChildRules>
+    <ChildRules assignment="addition">
+      <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//State/historytransition"/>
+      <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.statemach.model/model/statemach.ecore#//CompositeState/transitions"/>
+    </ChildRules>
+    <ChildRules assignment="addition">
+      <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//State/initialtransition"/>
+      <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.statemach.model/model/statemach.ecore#//CompositeState/transitions"/>
+    </ChildRules>
+    <ChildRules>
+      <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//InitialTransition/initialstate"/>
+      <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.statemach.model/model/statemach.ecore#//CompositeState/initial"/>
+    </ChildRules>
+    <ChildRules filter="first()">
+      <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//HistoryTransition/to"/>
+      <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.statemach.model/model/statemach.ecore#//CompositeState/deepHistory"/>
+    </ChildRules>
+  </Rules>
+  <Rules filter="self.states -> isEmpty() and self.entrypoint -> isEmpty() and self.exitpoint -> isEmpty()  and self.junction -> isEmpty()  and self.choice -> isEmpty()">
+    <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//State"/>
+    <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.statemach.model/model/statemach.ecore#//SimpleState"/>
+  </Rules>
+  <Rules>
+    <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//State"/>
+    <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.statemach.model/model/statemach.ecore#//State"/>
+  </Rules>
+  <Rules>
+    <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//Junction"/>
+    <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.statemach.model/model/statemach.ecore#//JunctionPoint"/>
+    <ChildRules>
+      <input href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.common.model/model/common.ecore#//NamedElement/name"/>
+      <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.common.model/model/common.ecore#//NamedElement/name"/>
+    </ChildRules>
+  </Rules>
+  <Rules>
+    <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//Choice"/>
+    <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.statemach.model/model/statemach.ecore#//ChoicePoint"/>
+    <ChildRules>
+      <input href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.common.model/model/common.ecore#//NamedElement/name"/>
+      <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.common.model/model/common.ecore#//NamedElement/name"/>
+    </ChildRules>
+  </Rules>
+  <Rules>
+    <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//EntryPoint"/>
+    <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.statemach.model/model/statemach.ecore#//EntryPoint"/>
+    <ChildRules>
+      <input href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.common.model/model/common.ecore#//NamedElement/name"/>
+      <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.common.model/model/common.ecore#//NamedElement/name"/>
+    </ChildRules>
+  </Rules>
+  <Rules>
+    <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//ExitPoint"/>
+    <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.statemach.model/model/statemach.ecore#//ExitPoint"/>
+    <ChildRules>
+      <input href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.common.model/model/common.ecore#//NamedElement/name"/>
+      <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.common.model/model/common.ecore#//NamedElement/name"/>
+    </ChildRules>
+  </Rules>
+  <Rules>
+    <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//DeepHistory"/>
+    <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.statemach.model/model/statemach.ecore#//DeepHistory"/>
+    <ChildRules>
+      <input href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.common.model/model/common.ecore#//NamedElement/name"/>
+      <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.common.model/model/common.ecore#//NamedElement/name"/>
+    </ChildRules>
+  </Rules>
+  <Rules>
+    <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//InitialState"/>
+    <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.statemach.model/model/statemach.ecore#//InitialPoint"/>
+    <ChildRules>
+      <input href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.common.model/model/common.ecore#//NamedElement/name"/>
+      <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.common.model/model/common.ecore#//NamedElement/name"/>
+    </ChildRules>
+  </Rules>
+  <Rules>
+    <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//Transitions"/>
+    <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.statemach.model/model/statemach.ecore#//Transition"/>
+    <ChildRules>
+      <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//TransitionBody/transitionguard"/>
+      <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.statemach.model/model/statemach.ecore#//Transition/guard"/>
+    </ChildRules>
+    <ChildRules assignment="addition">
+      <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//TransitionBody/methodparameter"/>
+      <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.statemach.model/model/statemach.ecore#//Transition/triggers"/>
+    </ChildRules>
+    <ChildRules assignment="addition">
+      <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//TransitionBody/portevent"/>
+      <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.statemach.model/model/statemach.ecore#//Transition/triggers"/>
+    </ChildRules>
+    <ChildRules assignment="addition">
+      <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//TransitionBody/trigger"/>
+      <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.statemach.model/model/statemach.ecore#//Transition/triggers"/>
+    </ChildRules>
+    <ChildRules>
+      <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//TransitionBody/transitionoperation"/>
+      <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.statemach.model/model/statemach.ecore#//Transition/actionChain"/>
+    </ChildRules>
+    <ChildRules>
+      <input href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.common.model/model/common.ecore#//NamedElement/name"/>
+      <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.common.model/model/common.ecore#//NamedElement/name"/>
+    </ChildRules>
+  </Rules>
+  <Rules>
+    <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//InitialTransition"/>
+    <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.statemach.model/model/statemach.ecore#//Transition"/>
+    <ChildRules>
+      <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//InitialTransition/initialstate"/>
+      <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.statemach.model/model/statemach.ecore#//Transition/sourceVertex"/>
+    </ChildRules>
+    <ChildRules>
+      <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//InitialTransition/initialto"/>
+      <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.statemach.model/model/statemach.ecore#//Transition/targetVertex"/>
+    </ChildRules>
+  </Rules>
+  <Rules>
+    <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//HistoryTransition"/>
+    <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.statemach.model/model/statemach.ecore#//Transition"/>
+    <ChildRules name="">
+      <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//HistoryTransition/from"/>
+      <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.statemach.model/model/statemach.ecore#//Transition/sourceVertex"/>
+    </ChildRules>
+    <ChildRules>
+      <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//HistoryTransition/to"/>
+      <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.statemach.model/model/statemach.ecore#//Transition/targetVertex"/>
+    </ChildRules>
+  </Rules>
+  <Rules>
+    <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//Transition"/>
+    <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.statemach.model/model/statemach.ecore#//Transition"/>
+    <ChildRules>
+      <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//Transition/from"/>
+      <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.statemach.model/model/statemach.ecore#//Transition/sourceVertex"/>
+    </ChildRules>
+    <ChildRules>
+      <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//Transition/to"/>
+      <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.statemach.model/model/statemach.ecore#//Transition/targetVertex"/>
+    </ChildRules>
+  </Rules>
+  <Rules>
+    <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//InternalTransition"/>
+    <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.statemach.model/model/statemach.ecore#//Transition"/>
+  </Rules>
+  <Rules>
+    <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//Vertex"/>
+    <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.statemach.model/model/statemach.ecore#//Vertex"/>
+    <ChildRules>
+      <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//Vertex/name"/>
+      <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.common.model/model/common.ecore#//NamedElement/name"/>
+    </ChildRules>
+  </Rules>
+  <Rules>
+    <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//InitialState"/>
+    <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.statemach.model/model/statemach.ecore#//Vertex"/>
+  </Rules>
+  <Rules>
+    <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//TransitionGuard"/>
+    <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.statemach.model/model/statemach.ecore#//Guard"/>
+    <ChildRules>
+      <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//TransitionGuard/name"/>
+      <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.common.model/model/common.ecore#//NamedElement/name"/>
+    </ChildRules>
+  </Rules>
+  <Rules>
+    <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//Trigger"/>
+    <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.statemach.model/model/statemach.ecore#//Trigger"/>
+    <ChildRules>
+      <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//Trigger/name"/>
+      <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.common.model/model/common.ecore#//NamedElement/name"/>
+    </ChildRules>
+  </Rules>
+  <Rules>
+    <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//PortEventTrigger"/>
+    <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.statemach.model/model/statemach.ecore#//Trigger"/>
+  </Rules>
+  <Rules>
+    <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//MethodParameterTrigger"/>
+    <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.statemach.model/model/statemach.ecore#//Trigger"/>
+    <ChildRules name="">
+      <input href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.common.model/model/common.ecore#//NamedElement/name"/>
+    </ChildRules>
+  </Rules>
+  <Rules>
+    <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//TransitionOperation"/>
+    <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.statemach.model/model/statemach.ecore#//ActionChain"/>
+    <ChildRules>
+      <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//TransitionOperation/name"/>
+      <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.common.model/model/common.ecore#//NamedElement/name"/>
+    </ChildRules>
+  </Rules>
+  <Rules>
+    <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//InitialState"/>
+    <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.statemach.model/model/statemach.ecore#//Pseudostate"/>
+  </Rules>
+  <Rules>
+    <input href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#//DeepHistory"/>
+    <output href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.statemach.model/model/statemach.ecore#//Vertex"/>
+  </Rules>
+  <LeftModels>
+    <model href="file:/Users/mlj01/eclipse-workspace/org.xtext.example.hclsope/model/generated/HclScope.ecore#/"/>
+  </LeftModels>
+  <RightModels>
+    <model href="file:/Users/mlj01/eclipse-workspace/Papyrus/org.eclipse.papyrus-rt/plugins/xtumlrt/metamodel/org.eclipse.papyrusrt.xtumlrt.statemach.model/model/statemach.ecore#/"/>
+  </RightModels>
+</m2m:MappingModel>

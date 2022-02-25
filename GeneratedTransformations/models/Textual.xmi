@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hclScope:StateMachine xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:hclScope="http://www.xtext.org/example/hclscope/HclScope" xsi:schemaLocation="http://www.xtext.org/example/hclscope/HclScope HclScope.ecore"/>
